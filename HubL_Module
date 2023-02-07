@@ -15,3 +15,22 @@
 	<hr>
   {% endif %}
 {% endfor %}
+
+
+#####
+
+{% set homes = hubdb_table_rows(5807443) %}
+
+{% set query = "price__lte="~contact.maximum_budget~"price__gte="~contact.minimum_budget~"&home_location="~contact.preferred_location.value~"&order=home_name" %}
+
+{% for home in homes %}
+    {{ home.name }} <br>
+	  {{ home.price }} <br>
+    {{ home.location }} <br>
+	  <img
+	   alt="{{ home.name }}"
+	   src="{{ home.home_photo.url }}"
+	   style="outline: none; max-width: 100%;"
+	   width="260px"
+	   />
+{% endfor %}
