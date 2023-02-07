@@ -1,0 +1,17 @@
+{% set homes = hubdb_table_rows(5807443) %}
+
+{% for home in homes %}
+  {% if home.location == contact.preferred_location and home.home_price <= contact.maximum_budget and home.home_price >= contact.minimum_budget %}
+    {{ home.name }} <br>
+	  {{ home.price }} <br>
+    {{ home.location }} <br>
+	  <img
+	   alt="{{ home.name }}"
+	   src="{{ home.home_photo.url }}"
+	   style="outline: none; max-width: 100%;"
+	   width="260px"
+	   />
+	<br>
+	<hr>
+  {% endif %}
+{% endfor %}
