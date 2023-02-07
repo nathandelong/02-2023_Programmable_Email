@@ -1,36 +1,20 @@
 {% set homes = hubdb_table_rows(5807443) %}
 
 {% for home in homes %}
-  {% if home.location == contact.preferred_location and home.home_price <= contact.maximum_budget and home.home_price >= contact.minimum_budget %}
-    {{ home.name }} <br>
-	  {{ home.price }} <br>
-    {{ home.location }} <br>
+  {% if home.location == contact.preferred_location.value and contact.maximum_budget >= home.price and contact.minimum_budget <= home.price %}
+    Property Name: {{ home.name }} <br>
+	  Listing Price: {{ home.price }} <br>
+    Information About This Home: {{ home.info }} <br>
+    City: {{ home.location }} <br>
+    <br>
 	  <img
 	   alt="{{ home.name }}"
-	   src="{{ home.home_photo.url }}"
+	   src="{{ home.photo.url }}"
 	   style="outline: none; max-width: 100%;"
 	   width="260px"
-	   />
+	   /> <br>
+     <a href="{{home.URL}}">Click here to view more information on this home!</a>
 	<br>
 	<hr>
   {% endif %}
-{% endfor %}
-
-
-#####
-
-{% set homes = hubdb_table_rows(5807443) %}
-
-{% set query = "price__lte="~contact.maximum_budget~"price__gte="~contact.minimum_budget~"&home_location="~contact.preferred_location.value~"&order=home_name" %}
-
-{% for home in homes %}
-    {{ home.name }} <br>
-	  {{ home.price }} <br>
-    {{ home.location }} <br>
-	  <img
-	   alt="{{ home.name }}"
-	   src="{{ home.home_photo.url }}"
-	   style="outline: none; max-width: 100%;"
-	   width="260px"
-	   />
 {% endfor %}
