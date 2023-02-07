@@ -13,7 +13,7 @@
 	   style="outline: none; max-width: 100%;"
 	   width="260px"
 	   /> <br>
-     <a href="{{home.URL}}">Click here to view more information on this home!</a>
+     <a href="{{ home.url }}" target="_blank">View More Information on this home!</a>
 	<br>
 	<hr>
   {% endif %}
